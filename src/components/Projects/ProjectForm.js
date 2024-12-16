@@ -75,9 +75,9 @@ const ProjectForm = ({className = "w-4/6", setReloadCurrentProject}) => {
                 if (response._id) {
                     setCurrentProject(response);
                     router.push(`/dashboard/proyectos`);
-                    setReload(true);
                 }
             }
+            setReload(true);
             formik.setTouched({}); // Unfocus all inputs
             console.log(response);
             
@@ -139,7 +139,7 @@ const ProjectForm = ({className = "w-4/6", setReloadCurrentProject}) => {
             />
           </div>
             <Input wrapperClassName="w-full" placeholder="Codigo Interno" name="internalCode" value={formik.values.internalCode} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.errors.internalCode && formik.touched.internalCode ? formik.errors.internalCode : null}/>
-            <Button className="w-full text-xs text-neutral-50 flex flex-row items-center justify-center gap-2 h-10 disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Crear</Button>
+            <Button className="w-full text-xs text-neutral-50 flex flex-row items-center justify-center gap-2 h-10 disabled:opacity-50 disabled:cursor-not-allowed" type="submit">{currentProject ? "Editar" : "Crear"}</Button>
         </form>
     </>)
 }
