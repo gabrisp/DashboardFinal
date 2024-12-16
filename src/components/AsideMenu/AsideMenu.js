@@ -3,7 +3,7 @@ import Link from "next/link";
 import { HomeIcon, UserIcon, FaceSmileIcon, BuildingOfficeIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
 import LocalStorageManager from "@/utils/localStorage";
 import { useEffect, useState } from "react";
-import Button  from "@/components/ui/button";
+import Button from "@/components/UI/Button";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 

@@ -10,9 +10,12 @@ import LocalStorageManager from "@/utils/localStorage";
 export default function DashboardLayout({ children }) {
     const user = LocalStorageManager.getUser(); // Obtener el usuario
     const router = useRouter(); // Obtener el router
-    if (!user) {
-        router.push("/"); // Si el usuario no está autenticado, redirigir a la página de login
-    }
+    useEffect(() => {
+        if (!user) {
+            router.push("/"); // Si el usuario no está autenticado, redirigir a la página de login
+        }
+    }, [user, router]);
+    if (!user) return null;
     return  (
     <>
     <div className="flex flex-col lg:flex-row min-h-screen">
