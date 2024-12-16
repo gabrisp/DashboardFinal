@@ -97,7 +97,7 @@ export default function VerificationForm({ onSubmit, error }) {
                     />
                 ))}
             </div>
-            <Button type="submit" className="w-full flex justify-center items-center relative h-[40px]">{formik.isSubmitting ? <RowLoader /> : 'Verificar'}</Button>
+            <Button type="submit" className="w-full flex justify-center items-center relative h-[40px] text-white">{formik.isSubmitting ? <RowLoader /> : 'Verificar'}</Button>
             {error && <p className="text-red-500 text-sm mt-2">{`${error.path}: ${error.msg}`}</p>}
         </form>
     );

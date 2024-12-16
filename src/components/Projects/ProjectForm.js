@@ -74,7 +74,7 @@ const ProjectForm = ({className = "w-4/6", setReloadCurrentProject}) => {
                 response = await APIConnect.projects.create(data);
                 if (response._id) {
                     setCurrentProject(response);
-                    router.push(`/dashboard/proyectos/${response._id}`);
+                    router.push(`/dashboard/proyectos`);
                     setReload(true);
                 }
             }

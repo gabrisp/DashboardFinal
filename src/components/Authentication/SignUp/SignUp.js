@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 // Components
 import SignUpForm from "./SignUpForm";
 import VerificationForm from "./VerificationForm";
@@ -16,7 +16,7 @@ export default function SignUp() {
     const [token, setToken] = useState(null); // Token de verificación
     const [error, setError] = useState(null); // Error de verificación
     const [data, setData] = useState({}); // Datos del usuario
-
+    const router = useRouter();
     const registerSubmit = async (values) => { // Función de registro
         const registerToken = await APIConnect.user.create(values.fName, values.lName, values.email, values.password);
         console.log(registerToken); 
@@ -25,6 +25,7 @@ export default function SignUp() {
         } else {
             setVerificationForm(true); // Mostrar el formulario de verificación
             setToken(registerToken.token); // Establecer el token
+            LocalStorageManager.setToken(registerToken.token); // Establecer el token en el localStorage
             setError(null); // Limpiar el error
         }
     };
@@ -36,8 +37,10 @@ export default function SignUp() {
     
             const validateTokenResponse = await APIConnect.user.validate(code, token, data); // Llamar a la función de validación y esperar la respuesta
             console.log("Validation successful:", validateTokenResponse);
-            LocalStorageManager.setToken(validateTokenResponse.token); // Establecer el token en el localStorage
-            return validateTokenResponse;
+            const user = await APIConnect.user.get(LocalStorageManager.getToken());
+            LocalStorageManager.setUser(user);
+            router.push("/");
+
         } catch (error) {
             console.error("Error during validation:", error.message); // Log de errores
             setError({path: "token", msg: "Token incorrecto"}); // Establecer el error

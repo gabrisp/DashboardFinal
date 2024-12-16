@@ -61,7 +61,7 @@ export default function ProyectPage() {
     if (!currentProject) {
         return <div className="flex justify-center items-center h-screen"><Loader/></div> // Si el proyecto actual es undefined, mostrar el componente de carga
     }
-    return (
+    if (currentProject) return (
         <div className="flex flex-col gap-4 mt-[20px]">
             <div className="flex flex-row justify-between items-center">
                 <h1 className="text-m font-bold text-neutral-800">{currentProject.name}</h1>
@@ -76,6 +76,7 @@ export default function ProyectPage() {
                 </div>
             </div>
             <div className="flex flex-col gap-2 items-center justify-center">
+                <h6 className="text-m font-bold text-neutral-800">Albaranes</h6>
                 <AlbaranesTable albaranes={currentProject.albaranes}/>
             </div>
         </div>
