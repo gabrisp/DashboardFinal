@@ -5,6 +5,7 @@ import { ClientsProvider } from "@/utils/contexts/useClients";
 import { ProjectsProvider } from "@/utils/contexts/useProjects";
 import { useRouter } from "next/navigation";
 import LocalStorageManager from "@/utils/localStorage";
+import { useEffect } from "react";
 
 // Componente de layout para la página de dashboard
 export default function DashboardLayout({ children }) {

@@ -3,7 +3,7 @@
 import LoginForm from "@/components/Authentication/LoginForm";
 import LocalStorageManager from "@/utils/localStorage";
 import { useRouter } from "next/navigation";
-
+import { useEffect } from "react";
 // Componente de la página de autenticación (Login)
 const AuthPage = () => {
     const router = useRouter(); // Router para redirigir a la página de dashboard si el usuario ya está autenticado
