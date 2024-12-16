@@ -68,7 +68,7 @@ const AsideMenu = () => {
                 <MenuItem key={index} href={item.href} text={item.label} icon={item.icon} />
             ))}
         </ul>
-        <footer className="flex flex-row items-center justify-center gap-2 lg:absolute lg:bottom-0 lg:left-0 lg:w-full mb-[20px]">
+        <footer className="flex flex-row items-center justify-center gap-2 absolute top-4 right-4 lg:bottom-0 lg:left-0 lg:w-full lg:top-auto lg:mb-[20px]">
             <Button onClick={handleLogout} className="bg-neutral-500 text-white transition-all duration-200 hover:bg-neutral-400 h-[30px] rounded-md text-[9px]">
                 LOG OUT
             </Button>

@@ -10,7 +10,7 @@ import { useClients } from "@/utils/contexts/useClients";
 import { useProjects } from "@/utils/contexts/useProjects";
 import Select from "@/components/UI/Select/Select";
 import { useRouter } from "next/navigation";
-
+import { useAlbaranes } from "@/utils/contexts/useAlbaranes";
 
 // Componente de formulario de albaranes
 const AlbaranForm = ({className = "w-4/6"}) => {
@@ -18,7 +18,7 @@ const AlbaranForm = ({className = "w-4/6"}) => {
     const {projects, loading: projectsLoading} = useProjects(); // Obtener los proyectos
     const {clients, loading: clientsLoading} = useClients(); // Obtener los clientes
     const router = useRouter();
-
+    const {setReload} = useAlbaranes();
     
     const formik = useFormik({
         initialValues: {
@@ -56,8 +56,7 @@ const AlbaranForm = ({className = "w-4/6"}) => {
                 })(),
                 material: values.material,
             }
-            let response;
-            response = await APIConnect.deliveryNote.create(data); // Crear el albarán
+            const response = await APIConnect.deliveryNote.create(data); // Crear el albarán
             if (response._id) {
                 setReload(true);
                 router.push(`/dashboard/albaranes`);
