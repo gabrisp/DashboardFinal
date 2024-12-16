@@ -15,10 +15,9 @@ export default function AlbaranPage() {
        (async () => { 
         setLoading(true); // Establecer el estado de carga a true
         const albaran = await APIConnect.deliveryNote.getOne(id); // Obtener el albarán
-        const project = await APIConnect.projects.getOne(albaran.projectId); // Obtener el proyecto
         console.log(albaran);
         if (!albaran.errors) { // Si no hay errores
-            setCurrentAlbaran({...albaran, project}); // Establecer el albarán actual
+            setCurrentAlbaran(albaran); // Establecer el albarán actual
         }
         setLoading(false); // Establecer el estado de carga a false
     })();

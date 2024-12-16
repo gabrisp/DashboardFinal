@@ -5,18 +5,14 @@ import { ClientsProvider } from "@/utils/contexts/useClients";
 import { ProjectsProvider } from "@/utils/contexts/useProjects";
 import { useRouter } from "next/navigation";
 import LocalStorageManager from "@/utils/localStorage";
-import { useEffect } from "react";
 
 // Componente de layout para la página de dashboard
 export default function DashboardLayout({ children }) {
     const user = LocalStorageManager.getUser(); // Obtener el usuario
     const router = useRouter(); // Obtener el router
-    useEffect(() => {
-        if (!user) {
-            router.push("/"); // Si el usuario no está autenticado, redirigir a la página de login
-        }
-    }, [user, router]);
-    if (!user) return null;
+    if (!user) {
+        router.push("/"); // Si el usuario no está autenticado, redirigir a la página de login
+    }
     return  (
     <>
     <div className="flex flex-col lg:flex-row min-h-screen">
