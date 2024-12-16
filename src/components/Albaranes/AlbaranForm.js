@@ -9,7 +9,7 @@ import APIConnect from "@/utils/APIConnect";
 import { useClients } from "@/utils/contexts/useClients";
 import { useProjects } from "@/utils/contexts/useProjects";
 import Select from "@/components/UI/Select/Select";
-
+import { useRouter } from "next/navigation";
 
 
 // Componente de formulario de albaranes
@@ -17,7 +17,7 @@ const AlbaranForm = ({className = "w-4/6"}) => {
 
     const {projects, loading: projectsLoading} = useProjects(); // Obtener los proyectos
     const {clients, loading: clientsLoading} = useClients(); // Obtener los clientes
-    
+    const router = useRouter();
 
     
     const formik = useFormik({
@@ -60,8 +60,7 @@ const AlbaranForm = ({className = "w-4/6"}) => {
             response = await APIConnect.deliveryNote.create(data); // Crear el albarán
             if (response._id) {
                 setReload(true);
-            
-                
+                router.push(`/dashboard/albaranes`);
                 formik.resetForm(); // Reset
                 formik.setTouched({}); // Unfocus 
             }

@@ -5,6 +5,7 @@ import LocalStorageManager from "@/utils/localStorage";
 
 // Componente de información de cliente incluye datos y logo
 export default function ClientInfo({client}) {
+    if (!client) return null;
     return (
         <div className="flex flex-row items-start justify-between gap-4 align-top">
         <div className="w-full">

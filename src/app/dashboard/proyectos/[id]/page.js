@@ -36,7 +36,9 @@ export default function ProyectPage() {
         if (id && LocalStorageManager.getToken()) { // Si el id del proyecto y el token están presentes
             (async()=>{
                 const project = await APIConnect.projects.getOne(id); // Obtener el proyecto
+                console.log(project);
                 const client = await APIConnect.clients.getOne(project.clientId); // Obtener el cliente
+                console.log(client);
                 const albaranes = await APIConnect.deliveryNote.getByProject(id); // Obtener los albaranes del proyecto
                 const editedAlbaranes =  albaranes.map(albaran => {
                     albaran.projectId = {}; // Editar el albarán para que tenga el id del proyecto y poder usarlo en el componente AlbaranesTable
